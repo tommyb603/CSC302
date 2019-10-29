@@ -11,7 +11,7 @@ node.routable_control_ip = "true"
 
 # Install and ezxecute a script that is contained in the repository.
 node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/webserver.sh"))
-node.addService(pg.Execute(shell="sh", command"/local/repository/webserver.sh"))
+node.addService(pg.Execute(shell="sh", command="/local/repository/webserver.sh"))
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)

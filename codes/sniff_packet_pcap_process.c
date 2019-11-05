@@ -48,7 +48,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 
   if (ntohs(eth->ether_type) == 0x0800) { // 0x0800 is IP type
     struct ipheader * ip = (struct ipheader *)
-                           (packet + sizeof(struct ethheader)); 
+                           (packet + sizeof(struct udpheader)); 
 
     printf("       From: %s\n", inet_ntoa(ip->iph_sourceip));  
     printf("         To: %s\n", inet_ntoa(ip->iph_destip));   

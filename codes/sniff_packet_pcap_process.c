@@ -16,14 +16,7 @@ struct ethheader {
   u_char  ether_dhost[ETHER_ADDR_LEN]; /* destination host address */
   u_char  ether_shost[ETHER_ADDR_LEN]; /* source host address */
   u_short ether_type;                  /* IP? ARP? RARP? etc */
-};
-
-/* UDP Header */
-struct udpheader *udp = (struct udpheader *)
-                        (packet + sizeof(struct ethheader) + sizeof(struct ipheader));
-char *msg = malloc(udp->udp_ulen * sizeof(char));
-msg = packet +  sizeof(struct ethheader) + sizeof(struct ipheader) + sizeof(struct udpheader);
-printf(" Message: %s\n", msg);
+}
 
 /* IP Header */
 struct ipheader {
@@ -60,6 +53,12 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
             return;
         case IPPROTO_UDP:
             printf("   Protocol: UDP\n");
+            /* UDP Header */
+            struct udpheader *udp = (struct udpheader *)
+            (packet + sizeof(struct ethheader) + sizeof(struct ipheader));
+            char *msg = malloc(udp->udp_ulen * sizeof(char));
+            msg = packet +  sizeof(struct ethheader) + sizeof(struct ipheader) + sizeof(struct udpheader);
+            printf(" Message: %s\n", msg);
             return;
         case IPPROTO_ICMP:
             printf("   Protocol: ICMP\n");

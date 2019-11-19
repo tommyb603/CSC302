@@ -19,6 +19,7 @@ for i in range(3):
   iface.addAddress(pg.IPv4Address(prefixForIP + str(local_ip_count), "255.255.255.0"))
   lan.addInterface(iface)
   node.addService(pg.Execute("sh", "sudo bash /local/repository/general.sh"))
+  git clone https://github.com/secdev/scapy.git
  
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
